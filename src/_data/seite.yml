@@ -1,21 +1,21 @@
 einstellungen:
-  praxisname: '[Name der Praxis]'
+  praxisname: '[Raum der Praxis]'
   domain: https://www.example.ch
-  seitentitel: Elternberatung online – [Name der Praxis]
+  seitentitel: Elternberatung – [Name der Praxis]
   beschreibung: Psychologische Beratung für Mütter, Väter und Bezugspersonen – vertraulich und online per Video.
-  person: '[Vorname Nachname]'
-  berufsbezeichnung: '[Berufsbezeichnung]'
-  ort: ''
-  email: ''
+  person: 'Kira Räber'
+  berufsbezeichnung: 'Psychologin MSc'
+  ort: 'Zürich'
+  email: 'kira.raeber@ik.me'
   telefon: ''
   buchung_url: ''
   buchung_einbetten: false
 einstieg:
-  dachzeile: '[Vorname Nachname] · [Berufsbezeichnung]'
+  dachzeile: 'Kira Räber · Psychologin MSc'
   titel: Psychologische Beratung für Eltern
   text: Für Mütter, Väter und Bezugspersonen, die eine Situation mit ihrem Kind oder in der Familie besser verstehen und verändern möchten. Online per Video.
   knopf: Erstgespräch buchen
-  hinweis: '[Dauer Erstgespräch] · Tarif nach Einkommen'
+  hinweis: '60 Min Erstgespräch · Tarif nach Einkommen'
   bild: ''
   bild_alt: ''
 themen:
@@ -42,18 +42,18 @@ haltung:
     text: Manchmal reicht ein Gespräch. Wie es weitergeht, entscheiden Sie nach jedem Termin neu.
 angebot:
   titel: Angebot
-  text: Die Beratung richtet sich an Eltern und Bezugspersonen von Kindern und Jugendlichen [Altersbereich]. Sie ist keine Psychotherapie und setzt keine Diagnose voraus.
+  text: Die Beratung richtet sich an Eltern und Bezugspersonen von Kindern und Jugendlichen. Sie ist keine Psychotherapie und setzt keine Diagnose voraus.
   liste:
   - status: Jetzt buchbar
     titel: Elternberatung online
     text: Gespräche per Video, allein oder als Elternpaar.
-    details: '[Dauer] · Tarif nach Einkommen'
+    details: '60 Min · Tarif nach Einkommen'
     hervorgehoben: true
     buchbar: true
     sichtbar: true
   - status: In Planung
     titel: Beratung vor Ort
-    text: Persönliche Gespräche in [Ort]. Der Standort wird hier bekannt gegeben.
+    text: Persönliche Gespräche in Zürich. Der Standort wird hier bekannt gegeben.
     details: ''
     hervorgehoben: false
     buchbar: false
@@ -78,11 +78,11 @@ konditionen:
   titel: Konditionen
   liste:
   - titel: Tarif
-    text: 'Der Tarif richtet sich nach dem Einkommen. [Spanne oder Berechnung ergänzen, z. B. von … bis … CHF pro [Dauer] Minuten.] [Erstgespräch: Preis oder kostenlos.]'
+    text: 'Der Tarif richtet sich nach dem Einkommen. Der Tarif richtet sich nach dem Einkommen und beträgt zwischen 110 und 210 CHF pro 60 Minuten. Sie ordnen sich selbst ein; ein Nachweis ist nicht nötig. Das Erstgespräch wird zum gleichen Tarif verrechnet.'
   - titel: Absage
-    text: Termine können bis [24] Stunden vorher kostenlos verschoben oder abgesagt werden.
+    text: Termine können bis 24 Stunden vorher kostenlos verschoben oder abgesagt werden.
   - titel: Schweigepflicht
-    text: Alles, was Sie besprechen, bleibt vertraulich. [Berufliche Schweigepflicht / Berufsordnung nennen.]
+    text: Alles, was Sie besprechen, bleibt vertraulich.
   - titel: Abgrenzung
     text: Die Praxis bietet keinen Notfalldienst. In akuten Krisen wenden Sie sich bitte an die unten genannten Stellen.
 ueber:
@@ -114,9 +114,9 @@ fragen:
   - frage: Wie funktioniert ein Gespräch per Video?
     antwort: Sie erhalten mit der Bestätigung einen Link und brauchen nur ein Gerät mit Kamera und Mikrofon sowie einen ungestörten Ort. [Verwendetes Videotool nennen.]
   - frage: Übernimmt die Krankenkasse die Kosten?
-    antwort: '[Antwort.]'
+    antwort: 'Nein.'
 fusszeile:
-  krisenhinweis: 'Kein Notfalldienst. In akuten Krisen: Sanität 144 · Die Dargebotene Hand 143.'
+  krisenhinweis: 'Ich biete keinen Notfalldienst an. In einer akuten Krise wenden Sie sich bitte an: Sanität 144 · Polizei 117 · Die Dargebotene Hand 143 · Ärztefon 0800 33 66 55 · Kriseninterventionszentrum KIZ Zürich 058 384 65 00'
 recht:
   impressum: '[Name, Adresse, E-Mail, Berufsbezeichnung und zuständige Stelle eintragen.]'
   datenschutz: '[Datenschutzerklärung eintragen: wer verantwortlich ist, welche Daten bei Besuch und Terminbuchung anfallen, wo sie gespeichert werden (Infomaniak, Schweiz), wie lange, und welche Rechte Betroffene haben.]'
