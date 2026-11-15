@@ -1,0 +1,24 @@
+---
+permalink: /llms.txt
+eleventyExcludeFromCollections: true
+---
+{%- set e = seite.einstellungen -%}
+# {{ e.praxisname }}
+
+> {{ e.beschreibung }}
+
+- Person: {{ e.person }}{% if e.berufsbezeichnung %}, {{ e.berufsbezeichnung }}{% endif %}
+{% if e.ort %}- Ort: {{ e.ort }}
+{% endif %}- Webseite: {{ e.domain }}
+{% if e.email %}- Kontakt: {{ e.email }}
+{% endif %}
+## Angebot
+{% for a in seite.angebot.liste %}{% if a.sichtbar != false %}
+- {{ a.titel }}{% if a.status %} ({{ a.status }}){% endif %}: {{ a.text }}{% if a.details %} {{ a.details }}{% endif %}
+{%- endif %}{% endfor %}
+
+## Häufige Fragen
+{% for x in seite.fragen.liste %}
+### {{ x.frage }}
+{{ x.antwort }}
+{% endfor %}

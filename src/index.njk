@@ -1,0 +1,142 @@
+---
+layout: basis.njk
+---
+{%- set e = seite.einstellungen -%}
+{%- set buchen = e.buchung_url or ("mailto:" + e.email if e.email else "#termin") -%}
+{%- set s = seite.einstieg -%}
+<section class="einstieg rahmen">
+  <div class="stapel">
+    {% if s.dachzeile %}<p class="dachzeile">{{ s.dachzeile }}</p>{% endif %}
+    <h1>{{ s.titel }}</h1>
+    <p class="gross">{{ s.text }}</p>
+    <div class="reihe">
+      <a class="knopf knopf-gross" href="#termin">{{ s.knopf }}</a>
+      <a class="textlink" href="#ablauf">So läuft es ab</a>
+    </div>
+    {% if s.hinweis %}<p class="klein">{{ s.hinweis }}</p>{% endif %}
+  </div>
+  <div class="bogen">
+    <div class="bogen-hinten" aria-hidden="true"></div>
+    {% if s.bild %}<img class="bogen-vorn" src="{{ s.bild }}" alt="{{ s.bild_alt }}" width="480" height="560">
+    {% else %}<div class="bogen-vorn" aria-hidden="true">{% if s.baum != false %}{% include "baum.njk" %}{% endif %}</div>{% endif %}
+  </div>
+</section>
+
+{%- set t = seite.themen %}
+{% if t.liste and t.liste.length %}
+<section class="hell">
+  <div class="rahmen abschnitt">
+    <div class="stapel schmal">
+      <h2>{{ t.titel }}</h2>
+      {% if t.text %}<p>{{ t.text }}</p>{% endif %}
+    </div>
+    <ul class="raster raster-4">
+      {% for x in t.liste %}<li class="karte"><h3>{{ x.titel }}</h3>{% if x.text %}<p>{{ x.text }}</p>{% endif %}</li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+{% endif %}
+
+{%- set h = seite.haltung %}
+{% if h and h.titel %}
+<section id="arbeitsweise" class="salbei">
+  <div class="rahmen abschnitt zwei zwei-oben">
+    <div class="stapel">
+      <h2>{{ h.titel }}</h2>
+      <p class="absatz">{{ h.text }}</p>
+    </div>
+    <ul class="linien">
+      {% for x in h.punkte %}<li><h3>{{ x.titel }}</h3><p>{{ x.text }}</p></li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
+{% endif %}
+
+<section id="angebot" class="rahmen abschnitt">
+  <div class="stapel schmal">
+    <h2>{{ seite.angebot.titel }}</h2>
+    {% if seite.angebot.text %}<p class="absatz">{{ seite.angebot.text }}</p>{% endif %}
+  </div>
+  <div class="raster raster-3">
+    {% for a in seite.angebot.liste %}{% if a.sichtbar != false %}
+    <article class="angebot{% if a.hervorgehoben %} angebot-dunkel{% endif %}">
+      {% if a.status %}<p class="dachzeile">{{ a.status }}</p>{% endif %}
+      <h3>{{ a.titel }}</h3>
+      <p>{{ a.text }}</p>
+      {% if a.details %}<p class="stark">{{ a.details }}</p>{% endif %}
+      {% if a.buchbar %}<a class="knopf knopf-hell" href="#termin">Termin buchen</a>{% endif %}
+    </article>
+    {% endif %}{% endfor %}
+  </div>
+</section>
+
+<section id="ablauf" class="hell">
+  <div class="rahmen abschnitt">
+    <h2>{{ seite.ablauf.titel }}</h2>
+    <ol class="raster raster-3 schritte">
+      {% for x in seite.ablauf.schritte %}<li><span class="ziffer" aria-hidden="true">{{ loop.index }}</span><h3>{{ x.titel }}</h3><p>{{ x.text }}</p></li>
+      {% endfor %}
+    </ol>
+  </div>
+</section>
+
+{%- set k = seite.konditionen %}
+{% if k and k.liste and k.liste.length %}
+<section id="konditionen" class="salbei">
+  <div class="rahmen abschnitt">
+    <h2>{{ k.titel }}</h2>
+    <dl class="kond">
+      {% for x in k.liste %}<div><dt>{{ x.titel }}</dt><dd class="absatz">{{ x.text }}</dd></div>
+      {% endfor %}
+    </dl>
+  </div>
+</section>
+{% endif %}
+
+{%- set u = seite.ueber %}
+<section id="ueber-mich" class="rahmen abschnitt zwei">
+  {% if u.bild %}<img class="portrait" src="{{ u.bild }}" alt="{{ u.bild_alt }}" width="520" height="420" loading="lazy">
+  {% else %}<div class="portrait" aria-hidden="true"></div>{% endif %}
+  <div class="stapel">
+    <h2>{{ u.titel }}</h2>
+    <p class="gross">{{ e.person }}{% if e.berufsbezeichnung %}, {{ e.berufsbezeichnung }}{% endif %}</p>
+    <p class="absatz">{{ u.text }}</p>
+    {% if u.punkte and u.punkte.length %}<ul class="punkte">{% for p in u.punkte %}<li>{{ p }}</li>{% endfor %}</ul>{% endif %}
+  </div>
+</section>
+
+{%- set b = seite.termin %}
+<section id="termin" class="dunkel">
+  <div class="rahmen abschnitt zwei zwei-oben">
+    <div class="stapel">
+      <h2>{{ b.titel }}</h2>
+      <p class="gross">{{ b.text }}</p>
+      {% if b.hinweis %}<p class="klein">{{ b.hinweis }}</p>{% endif %}
+      {% if e.email %}<p class="klein">Lieber schreiben? <a href="mailto:{{ e.email }}">{{ e.email }}</a></p>{% endif %}
+    </div>
+    {% if e.buchung_url and e.buchung_einbetten %}
+    <iframe class="buchung" src="{{ e.buchung_url }}" title="Online-Terminbuchung" loading="lazy"></iframe>
+    {% else %}
+    <div class="buchungskarte">
+      <p class="stark">{{ seite.angebot.liste[0].titel }}</p>
+      {% if seite.angebot.liste[0].details %}<p>{{ seite.angebot.liste[0].details }}</p>{% endif %}
+      {% if e.buchung_url %}<a class="knopf knopf-gross" href="{{ e.buchung_url }}">{{ b.knopf }}</a>
+      {% elif e.email %}<a class="knopf knopf-gross" href="mailto:{{ e.email }}?subject=Terminanfrage">Termin per E-Mail anfragen</a>
+      {% else %}<p class="klein-dunkel">Die Online-Buchung wird hier eingebunden.</p>{% endif %}
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+{%- set f = seite.fragen %}
+{% if f.liste and f.liste.length %}
+<section id="fragen" class="rahmen abschnitt eng">
+  <h2>{{ f.titel }}</h2>
+  <div class="fragen">
+    {% for x in f.liste %}<details{% if loop.first %} open{% endif %}><summary>{{ x.frage }}</summary><p class="absatz">{{ x.antwort }}</p></details>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}

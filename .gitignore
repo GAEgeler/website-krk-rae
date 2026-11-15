@@ -1,0 +1,32 @@
+# --- Wird automatisch erzeugt, gehört nicht ins Repository
+node_modules/
+_site/
+
+# --- Privater Ordner: bleibt nur auf deinem Computer
+# (Notizen, Entwürfe, Originalfotos, Verträge, Rechnungen)
+privat/
+
+# --- Zugangsdaten und Schlüssel, falls sie doch einmal hier landen
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.kdbx
+id_rsa*
+id_ed25519*
+*passwort*
+*password*
+*zugang*
+*secret*
+
+# --- Mac- und Editor-Dateien
+.DS_Store
+._*
+.vscode/
+.idea/
+*.swp
+
+# --- Protokolle
+*.log
+npm-debug.log*

@@ -1,0 +1,169 @@
+# Redaktions-Login (Sveltia CMS). Vor dem ersten Gebrauch "repo" anpassen.
+backend:
+  name: github
+  repo: GITHUB-BENUTZER/REPO-NAME
+  branch: main
+locale: de
+site_url: https://www.example.ch
+media_folder: src/bilder
+public_folder: /bilder
+
+collections:
+  - name: inhalte
+    label: Inhalte
+    files:
+      - name: seite
+        label: Webseite
+        file: src/_data/seite.yml
+        fields:
+          - name: einstellungen
+            label: Einstellungen
+            widget: object
+            collapsed: true
+            fields:
+              - { name: praxisname, label: Name der Praxis, widget: string }
+              - { name: domain, label: "Adresse der Webseite (mit https://)", widget: string }
+              - { name: seitentitel, label: "Seitentitel (erscheint bei Google)", widget: string }
+              - { name: beschreibung, label: "Kurzbeschreibung (erscheint bei Google, max. 160 Zeichen)", widget: text }
+              - { name: person, label: Vorname Nachname, widget: string }
+              - { name: berufsbezeichnung, label: Berufsbezeichnung, widget: string, required: false }
+              - { name: ort, label: Ort, widget: string, required: false }
+              - { name: email, label: E-Mail, widget: string, required: false }
+              - { name: telefon, label: Telefon, widget: string, required: false }
+              - { name: buchung_url, label: Adresse der Terminbuchung, widget: string, required: false }
+              - { name: buchung_einbetten, label: Buchung direkt in der Seite anzeigen, widget: boolean, default: false, required: false }
+          - name: einstieg
+            label: Einstieg (oberster Bereich)
+            widget: object
+            collapsed: true
+            fields:
+              - { name: dachzeile, label: Kleine Zeile über dem Titel, widget: string, required: false }
+              - { name: titel, label: Titel, widget: string }
+              - { name: text, label: Text, widget: text }
+              - { name: knopf, label: Beschriftung Knopf, widget: string }
+              - { name: hinweis, label: "Hinweiszeile (Dauer, Preis)", widget: string, required: false }
+              - { name: baum, label: "Jahreszeiten-Baum zeigen (solange kein Bild gewählt ist)", widget: boolean, default: true, required: false }
+              - { name: bild, label: Bild, widget: image, required: false }
+              - { name: bild_alt, label: Bildbeschreibung, widget: string, required: false }
+          - name: themen
+            label: Anliegen
+            widget: object
+            collapsed: true
+            fields:
+              - { name: titel, label: Titel, widget: string }
+              - { name: text, label: Einleitung, widget: text, required: false }
+              - name: liste
+                label: Themen
+                widget: list
+                summary: "{{titel}}"
+                fields:
+                  - { name: titel, label: Titel, widget: string }
+                  - { name: text, label: Text, widget: text, required: false }
+          - name: haltung
+            label: Arbeitsweise
+            widget: object
+            collapsed: true
+            fields:
+              - { name: titel, label: Titel, widget: string }
+              - { name: text, label: Text, widget: text }
+              - name: punkte
+                label: Grundsätze
+                widget: list
+                summary: "{{titel}}"
+                fields:
+                  - { name: titel, label: Titel, widget: string }
+                  - { name: text, label: Text, widget: text }
+          - name: angebot
+            label: Angebot
+            widget: object
+            collapsed: true
+            fields:
+              - { name: titel, label: Titel, widget: string }
+              - { name: text, label: "Einleitung (für wen, Abgrenzung)", widget: text, required: false }
+              - name: liste
+                label: Angebote
+                widget: list
+                summary: "{{titel}}"
+                fields:
+                  - { name: status, label: "Status (z. B. Jetzt buchbar)", widget: string, required: false }
+                  - { name: titel, label: Titel, widget: string }
+                  - { name: text, label: Beschreibung, widget: text }
+                  - { name: details, label: "Dauer und Preis", widget: string, required: false }
+                  - { name: hervorgehoben, label: Dunkel hervorheben, widget: boolean, default: false, required: false }
+                  - { name: buchbar, label: Knopf «Termin buchen» zeigen, widget: boolean, default: false, required: false }
+                  - { name: sichtbar, label: Auf der Seite anzeigen, widget: boolean, default: true, required: false }
+          - name: ablauf
+            label: Ablauf
+            widget: object
+            collapsed: true
+            fields:
+              - { name: titel, label: Titel, widget: string }
+              - name: schritte
+                label: Schritte
+                widget: list
+                summary: "{{titel}}"
+                fields:
+                  - { name: titel, label: Titel, widget: string }
+                  - { name: text, label: Text, widget: text }
+          - name: konditionen
+            label: Konditionen
+            widget: object
+            collapsed: true
+            fields:
+              - { name: titel, label: Titel, widget: string }
+              - name: liste
+                label: Punkte
+                widget: list
+                summary: "{{titel}}"
+                fields:
+                  - { name: titel, label: Titel, widget: string }
+                  - { name: text, label: Text, widget: text }
+          - name: ueber
+            label: Über mich
+            widget: object
+            collapsed: true
+            fields:
+              - { name: titel, label: Titel, widget: string }
+              - { name: text, label: Text, widget: text }
+              - { name: bild, label: Bild, widget: image, required: false }
+              - { name: bild_alt, label: Bildbeschreibung, widget: string, required: false }
+              - name: punkte
+                label: "Werdegang (Ausbildung, Stationen, Verband)"
+                widget: list
+                required: false
+                field: { name: punkt, label: Stichpunkt, widget: string }
+          - name: termin
+            label: Terminbuchung
+            widget: object
+            collapsed: true
+            fields:
+              - { name: titel, label: Titel, widget: string }
+              - { name: text, label: Text, widget: text }
+              - { name: hinweis, label: Hinweis zum Datenschutz, widget: text, required: false }
+              - { name: knopf, label: Beschriftung Knopf, widget: string }
+          - name: fragen
+            label: Häufige Fragen
+            widget: object
+            collapsed: true
+            fields:
+              - { name: titel, label: Titel, widget: string }
+              - name: liste
+                label: Fragen
+                widget: list
+                summary: "{{frage}}"
+                fields:
+                  - { name: frage, label: Frage, widget: string }
+                  - { name: antwort, label: Antwort, widget: text }
+          - name: fusszeile
+            label: Fusszeile
+            widget: object
+            collapsed: true
+            fields:
+              - { name: krisenhinweis, label: Hinweis für Krisen, widget: string, required: false }
+          - name: recht
+            label: Impressum und Datenschutz
+            widget: object
+            collapsed: true
+            fields:
+              - { name: impressum, label: Impressum, widget: text }
+              - { name: datenschutz, label: Datenschutzerklärung, widget: text }
